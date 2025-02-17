@@ -10,7 +10,7 @@ export class QuestionsService {
 
   async create(createQuestionDto: CreateQuestionDto, req: any) {
     return await this.prisma.questions.create({
-      data: { ...createQuestionDto, userId: req.sub },
+      data: { ...createQuestionDto, userId: req.sub.sub },
     });
   }
 
