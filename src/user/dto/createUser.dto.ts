@@ -11,7 +11,7 @@ export class CreateUserDto {
   name: string;
 
   @Length(6)
-  @IsAlpha()
+  // @IsAlpha()
   @IsNotEmpty()
   password: string;
 }

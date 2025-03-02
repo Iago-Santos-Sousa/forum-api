@@ -14,9 +14,19 @@ export class UserService {
     return this.prisma.user.create({ data: { ...data, password: hashPassword } });
   }
 
-  async user(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User | null> {
+  async user(
+    userWhereUniqueInput: Prisma.UserWhereUniqueInput,
+  ): Promise<Omit<User, "password"> | null> {
     return this.prisma.user.findUnique({
       where: userWhereUniqueInput,
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        password: false,
+        createdAt: true,
+        updatedAt: true,
+      },
     });
   }
 
